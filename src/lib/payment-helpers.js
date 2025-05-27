@@ -49,7 +49,7 @@ function prepareECPayData(order) {
     TradeDesc: order.description || '測試交易描述',
     ItemName: '測試訂單',
     ReturnURL: '${BACKEND_HOST}/api/order/ecpay-result',
-    ClientBackURL: '${HOST}/become-a-sitter', // 消費者點選此按鈕後，會將頁面導回到此設定的網址
+    ClientBackURL: '${FRONTEND_HOST}/become-a-sitter', // 消費者點選此按鈕後，會將頁面導回到此設定的網址
     // OrderResultURL: '${FRONTEND_HOST}/payment_result', // 有別於ReturnURL (server端的網址)，OrderResultURL為特店的client端(前端)網址。消費者付款完成後，綠界會將付款結果參數以POST方式回傳到到該網址。詳細說明請參考付款結果通知。; 若與[ClientBackURL]同時設定，將會以此參數為主
     CustomField1: order.id
   }
