@@ -437,6 +437,12 @@ async function postECPayResult(req, res, next) {
   // 更新 order
   // 更新 payment
   // redirect to orderlist.vue
+  res.status(200).json({
+    status: 'success',
+    message: '成功',
+    data: req.body
+  })
+
 }
 
 module.exports = {
