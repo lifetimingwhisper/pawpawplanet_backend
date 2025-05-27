@@ -1,6 +1,7 @@
 const { dataSource } = require('../db/data-source')
 const validation = require('../utils/validation')
 const orderHelper = require('../lib/order-helpers')
+const paymentHelper = require('../lib/payment-helpers')
 const { Not } = require('typeorm')
 
 
@@ -378,6 +379,66 @@ async function getOrdersRequestedOnSameDate(req, res) {
   }
 }
 
+async function postOrderPayment(req, res, next) {
+  try {
+    console.log('postOrderPayment...')
+    const { id, role } = req.user
+    const orderId = req.params.id
+
+    // if (!orderId) {
+    //   return res.status(400).json({
+    //     status: 'failed',
+    //     message: '欄位未填寫正確'
+    //   })
+    // }
+
+    // 取得 order
+    // const orderRepo = dataSource.getRepository('Order')
+    // const order = await orderRepo.findOne({
+    //   where: { id: orderId }
+    // })
+
+    // if (!order || order.owner_id !== id) {
+    //   res.status(400).json({
+    //     status: 'failed',
+    //     message: '無法存取訂單，不是您的訂單'
+    //   })
+    // }
+
+    // 新增 payment
+    // const paymentRepo = dataSource.getRepository('Payment')
+    // const payment = paymentRepo.create({
+    //   order: orderId,
+    //   amount: order.price
+    // })
+    // await paymentRepo.save(payment)
+
+    // 假 order
+    const data = {
+      id: `1234567${Date.now().toString()}`,
+      price: 700,
+      description: '測試'
+    }
+
+    res.status(200).json({
+      status: 'success',
+      message: '成功',
+      data: paymentHelper.prepareECPayData(data)
+      // data: paymentHelper.prepareECPayData({...order})
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function postECPayResult(req, res, next) {
+  console.log('postECPayResult req.body: ', req.body)
+
+  // 更新 order
+  // 更新 payment
+  // redirect to orderlist.vue
+}
+
 module.exports = {
   PostOrderReview,
   PostOrder,
@@ -385,5 +446,8 @@ module.exports = {
   patchOrderStatus,
   getOrdersByRole,
   getOrdersAcceptedOnSameDate,
-  getOrdersRequestedOnSameDate
+  getOrdersRequestedOnSameDate,
+
+  postOrderPayment,
+  postECPayResult
 }
