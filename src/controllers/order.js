@@ -382,8 +382,8 @@ async function getOrdersRequestedOnSameDate(req, res) {
 async function postOrderPayment(req, res, next) {
   try {
     console.log('postOrderPayment...')
-    const { id, role } = req.user
-    const orderId = req.params.id
+    // const { id, role } = req.user
+    // const orderId = req.params.id
 
     // if (!orderId) {
     //   return res.status(400).json({
