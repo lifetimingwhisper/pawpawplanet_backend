@@ -432,6 +432,7 @@ async function postOrderPayment(req, res, next) {
 }
 
 async function postECPayResult(req, res, next) {
+  console.log('------------------ postECPayResult called')
   console.log('postECPayResult req.body: ', req.body)
 
   // 更新 order
