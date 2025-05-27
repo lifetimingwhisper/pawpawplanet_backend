@@ -38,7 +38,7 @@ function getCurrentDateTimeFormatted() {
 function prepareECPayData(order) {
   const BACKEND_HOST = config.get('ecpay.backendHost')
   console.log('=============================== backend_host: ', BACKEND_HOST)
-  console.log('=============================== return url: ', '${BACKEND_HOST}/api/order/ecpay-result')
+  console.log('=============================== return url: ', `${BACKEND_HOST}/api/order/ecpay-result`)
   const FRONTEND_HOST = config.get('ecpay.frontendHost')
   // const no = `${order.id}_001`
   const time = getCurrentDateTimeFormatted()
