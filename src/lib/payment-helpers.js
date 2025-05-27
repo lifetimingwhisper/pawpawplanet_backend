@@ -38,7 +38,7 @@ function getCurrentDateTimeFormatted() {
 function prepareECPayData(order) {
   const BACKEND_HOST = config.get('ecpay.backendHost')
   console.log('=============================== backend_host: ', BACKEND_HOST)
-  console.log('=============================== return url: ', `${BACKEND_HOST}/api/order/ecpay-result`)
+  console.log('=============================== return url: ', `${BACKEND_HOST}/api/orders/ecpay-result`)
   const FRONTEND_HOST = config.get('ecpay.frontendHost')
   // const no = `${order.id}_001`
   const time = getCurrentDateTimeFormatted()
@@ -48,7 +48,7 @@ function prepareECPayData(order) {
     TotalAmount: order.price,
     TradeDesc: order.description || '測試交易描述',
     ItemName: '測試訂單',
-    ReturnURL: `${BACKEND_HOST}/api/order/ecpay-result`,
+    ReturnURL: `${BACKEND_HOST}/api/orders/ecpay-result`,
     ClientBackURL: `${FRONTEND_HOST}/become-a-sitter`, // 消費者點選此按鈕後，會將頁面導回到此設定的網址
     // OrderResultURL: '${FRONTEND_HOST}/payment_result', // 有別於ReturnURL (server端的網址)，OrderResultURL為特店的client端(前端)網址。消費者付款完成後，綠界會將付款結果參數以POST方式回傳到到該網址。詳細說明請參考付款結果通知。; 若與[ClientBackURL]同時設定，將會以此參數為主
     CustomField1: order.id
