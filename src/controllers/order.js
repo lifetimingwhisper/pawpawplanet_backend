@@ -416,7 +416,7 @@ async function postOrderPayment(req, res, next) {
     // 假 order
     const data = {
       id: `1234567${Date.now().toString()}`,
-      price: 700,
+      price: '700',
       description: '測試'
     }
 
