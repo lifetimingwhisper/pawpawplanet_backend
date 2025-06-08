@@ -2,11 +2,18 @@ const { dataSource } = require('../db/data-source')
 const dayjs = require('dayjs')
 const orderHelper = require('../lib/order-helpers')
 
-function ping() {
+
+function ping(req, res, next) {
   console.log('scheduler: wake the server up......')
+  return res.status(200).json({
+    status: 'success',
+    message: '排程啟動中.....'
+  })
 }
 
 async function closeDueOrders(req, res, next) {
+  console.log('scheduler: update due orders......')
+
   const queryRunner = dataSource.createQueryRunner()
   const today = dayjs()
   const dueDate = today.format('YYYY-MM-DD')
