@@ -724,8 +724,9 @@ const ORDER_STATUS = { // 0 pending, 1 accepted, 2 paid, 3 rejected, 4 cancelled
   PAID: 2,       // 飼主付款
   REJECTED: 3,   // 保姆拒絕預約
   CANCELLED: 4,  // 飼主取消預約
-  EXPIRED: 5,    // 飼主逾期未付款
-  COMPLETED: 6  // 訂單完成
+  EXPIRED_NO_PAY: 5,    // 飼主逾期未付款
+  EXPIRED_NO_RESPONSE: 6, // 保姆逾期未回覆
+  COMPLETED: 7  // 訂單完成
 }
 
 const ORDER_CAT_TAG = {

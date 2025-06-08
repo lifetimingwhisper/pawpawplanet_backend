@@ -9,6 +9,7 @@ const orderRouter = require('./routes/order')
 const ownerRouter = require('./routes/owner')
 const petRouter = require('./routes/pet')
 const recommendationsRouter = require('./routes/recommendations')
+const scheduleRouter = require('./routes/scheduler')
 
 const app = express()
 app.use(cors())
@@ -29,6 +30,7 @@ app.use('/api/owners', ownerRouter)
 app.use('/api/recommendations', recommendationsRouter)
 
 app.use('/api/pets', petRouter)
+app.use('/api/scheduler', scheduleRouter)
 
 // 404： 處理未匹配的路由
 app.use((req, res) => {
