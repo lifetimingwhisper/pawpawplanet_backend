@@ -1,7 +1,11 @@
 const { dataSource } = require('../db/data-source')
 const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc');        // 引入 UTC 插件
+const timezone = require('dayjs/plugin/timezone');  // 引入 timezone 插件
 const orderHelper = require('../lib/order-helpers')
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 function ping(req, res, next) {
   console.log('scheduler: wake the server up......')
@@ -15,9 +19,20 @@ async function closeDueOrders(req, res, next) {
   console.log('scheduler: update due orders......')
 
   const queryRunner = dataSource.createQueryRunner()
-  const today = dayjs()
-  const dueDate = today.format('YYYY-MM-DD')
+  const today = dayjs().tz('Asia/Taipei') // taipeiTime
+  // const today = dayjs()
+  console.log('----------- Taipei time : ')
+  console.log('----------- today now: ', today)
+  console.log('----------- formated: ', today.format('YYYY-MM-DD'))
+  const date = today.subtract(1, 'day') // for test
+  console.log('----------- yesterday date: ', date)
+  const dueDate = date.format('YYYY-MM-DD')
+  console.log('----------- formatted dueDate: ', dueDate)
   
+  // return res.status(200).json({
+  //   status: 'success',
+  //   message: '排程測試中....'
+  // })
   try {
     await queryRunner.connect()
     await queryRunner.startTransaction()
