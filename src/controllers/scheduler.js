@@ -9,9 +9,13 @@ dayjs.extend(timezone);
 
 function ping(req, res, next) {
   console.log('scheduler: wake the server up......')
+  const now = new Date()
+
   return res.status(200).json({
     status: 'success',
-    message: '排程啟動中.....'
+    message: '排程啟動中.....',
+    serverTime: now.toString(),     // 本地時間（含時區）
+    utcTime: now.toISOString()      // UTC 時間
   })
 }
 
