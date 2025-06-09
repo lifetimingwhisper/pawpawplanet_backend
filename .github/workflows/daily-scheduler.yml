@@ -2,7 +2,7 @@ name: Daily Order Status Updater
 
 on:
   schedule:
-    - cron: '30 5 * * *'  # 每天 UTC 時間 04:00，對應台北時間 12:00
+    - cron: '30 6 * * *'  # 每天 UTC 時間 04:00，對應台北時間 14:30
   workflow_dispatch:
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Wake Render (optional)
-        run: curl https://demo-pawpawplanet-backend.onrender.com/ping
+        run: curl https://demo-pawpawplanet-backend.onrender.com/api/scheduler/ping
 
       - name: Wait for Render to wake up
         run: sleep 55  # 等 55 秒（確保 Render 已啟動）
