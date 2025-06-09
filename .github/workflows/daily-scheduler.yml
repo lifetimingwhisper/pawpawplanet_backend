@@ -2,7 +2,8 @@ name: Daily Order Status Updater
 
 on:
   schedule:
-    - cron: '30 4 * * *'  # 每天 UTC 時間 04:00，對應台北時間 12:00
+    - cron: '00 5 * * *'  # 每天 UTC 時間 04:00，對應台北時間 12:00
+  workflow_dispatch:
     # - cron: '57 15 * * *'  # 台灣時間 23:57（UTC+8）
 
 jobs:
@@ -16,7 +17,9 @@ jobs:
       - name: Wait for Render to wake up
         run: sleep 55  # 等 55 秒（確保 Render 已啟動）
 
-      - name: Call close-due-orders API
-        run: |
-          curl -X POST https://demo-pawpawplanet-backend.onrender.com/api/scheduler/close-due-orders \
-            -H "Authorization: Bearer ${{ secrets.SCHEDULER_SECRET }}"
+      - name: Wake Render (optional)
+        run: curl https://demo-pawpawplanet-backend.onrender.com/ping
+      # - name: Call close-due-orders API
+      #   run: |
+      #     curl -X POST https://demo-pawpawplanet-backend.onrender.com/api/scheduler/close-due-orders \
+      #       -H "Authorization: Bearer ${{ secrets.SCHEDULER_SECRET }}"
