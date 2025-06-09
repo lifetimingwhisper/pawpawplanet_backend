@@ -2,9 +2,8 @@ name: Daily Order Status Updater
 
 on:
   schedule:
-    - cron: '00 5 * * *'  # 每天 UTC 時間 04:00，對應台北時間 12:00
+    - cron: '30 5 * * *'  # 每天 UTC 時間 04:00，對應台北時間 12:00
   workflow_dispatch:
-    # - cron: '57 15 * * *'  # 台灣時間 23:57（UTC+8）
 
 jobs:
   call-api:
