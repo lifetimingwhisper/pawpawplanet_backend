@@ -11,7 +11,8 @@ jobs:
 
     steps:
       - name: Wake Render (optional)
-        run: curl https://demo-pawpawplanet-backend.onrender.com/api/scheduler/ping
+        run: curl https://demo-pawpawplanet-backend.onrender.com/api/scheduler/ping  \
+            -H "Authorization: Bearer ${{ secrets.SCHEDULER_SECRET }}"
 
       - name: Wait for Render to wake up
         run: sleep 55  # 等 55 秒（確保 Render 已啟動）
